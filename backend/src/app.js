@@ -2,9 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
+
+const frontendURL = process.env.FRONTEND_URL;
+
+// CORS configuration
+const corsOptions = {
+  origin: frontendURL,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(bodyParser.json());
@@ -17,13 +28,9 @@ mongoose.connect(process.env.MONGODB_URI, {
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error: ', err));
 
-// Routes
+// Routes for tickets
 const ticketRoutes = require('./routes/tickets');
 app.use('/api/tickets', ticketRoutes);
-
-app.get('/', (req, res) => {
-  res.send('Welcome to the Event Ticketing App!');
-});
 
 // Start the server
 app.listen(port, () => {
