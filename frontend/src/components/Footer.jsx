@@ -1,13 +1,32 @@
-import "../styles/Footer.css"; // Import footer styles
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 const Footer = () => {
   return (
-    <footer className="site-footer">
-      <p>&copy; {new Date().getFullYear()} Event Platform. All Rights Reserved.</p>
-      <p>
-        <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a>
-      </p>
-    </footer>
+    <Box
+      component="footer"
+      sx={{
+        bgcolor: 'primary.main',
+        color: 'white',
+        p: 2,
+        textAlign: 'center',
+        mt: 4,
+      }}
+    >
+      <Typography variant="body2">
+        &copy; {new Date().getFullYear()} Event Ticketing. All rights reserved.
+      </Typography>
+      <Typography variant="body2">
+        <Link href="/privacy" color="inherit" underline="hover">
+          Privacy Policy
+        </Link>{' '}
+        |{' '}
+        <Link href="/terms" color="inherit" underline="hover">
+          Terms of Service
+        </Link>
+      </Typography>
+    </Box>
   );
 };
 

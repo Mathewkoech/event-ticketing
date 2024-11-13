@@ -7,13 +7,12 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
-const frontendURL = process.env.FRONTEND_URL;
 
 // CORS configuration
 const corsOptions = {
-  origin: frontendURL,
+  origin: process.env.FRONTEND_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control', 'Pragma', 'Expires'],
 };
 app.use(cors(corsOptions));
 
@@ -31,6 +30,10 @@ mongoose.connect(process.env.MONGODB_URI, {
 // Routes for tickets
 const ticketRoutes = require('./routes/tickets');
 app.use('/api/tickets', ticketRoutes);
+
+// Routes for events
+const eventRoutes = require('./routes/events'); // Add this line
+app.use('/api/events', eventRoutes);
 
 // Start the server
 app.listen(port, () => {

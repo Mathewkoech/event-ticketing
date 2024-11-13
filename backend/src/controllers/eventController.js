@@ -10,11 +10,25 @@ exports.createEvent = async (req, res) => {
   }
 };
 
-// Get all events
+// Get all events with pagination, filtering, and sorting
 exports.getAllEvents = async (req, res) => {
   try {
-    const events = await Event.find();
-    res.status(200).json({ count: events.length, results: events });
+    const { page = 1, limit = 10, category, date, location } = req.query;
+
+    // Build query object
+    let query = {};
+    if (category) query.category = category;
+    if (date) query.date = { $gte: new Date(date) }; // Events after this date
+    if (location) query.location = { $regex: location, $options: 'i' }; // Case-insensitive search
+
+    // Get paginated results
+    const events = await Event.find(query)
+      .skip((page - 1) * limit)
+      .limit(Number(limit))
+      .sort({ date: 1 }); // Sort by date, ascending
+
+    const total = await Event.countDocuments(query); // Get total count for pagination
+    res.status(200).json({ count: total, results: events });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

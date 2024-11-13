@@ -1,20 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Use React Router for navigation
-import "../styles/Header.css"; // Import header styles
+import { Link } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 const Header = () => {
   return (
-    <header className="site-header">
-      <nav className="navbar">
-        <h1 className="logo">Event Platform</h1>
-        <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/events">Events</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-        </ul>
-      </nav>
-    </header>
+    <AppBar position="static" color="primary">
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          Event Platform
+        </Typography>
+        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
+          <Button color="inherit" component={Link} to="/"></Button>
+          <Button color="inherit" component={Link} to="/events">Events</Button>
+          <Button color="inherit" component={Link} to="/about">About</Button>
+          <Button color="inherit" component={Link} to="/contact">Contact</Button>
+          <Button color="inherit" component={Link} to="/login">Login</Button>
+          <Button color="inherit" component={Link} to="/register">Sign Up</Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

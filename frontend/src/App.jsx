@@ -1,24 +1,19 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Homepage from "./components/Homepage";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import Homepage from './components/pages/Homepage';
+import EventDetails from './components/events/EventDetails';
+import ErrorPage from './components/pages/ErrorPage';
 
-const App = () => {
-  return (
-    <Router>
-      <div className="app">
-        <Header />
-        
-        <main>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-          </Routes>
-        </main>
-        
-        <Footer />
-      </div>
-    </Router>
-  );
-};
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Homepage />} />
+        <Route path="/event/:id" element={<EventDetails />} />
+        <Route path="*" element={<ErrorPage />} /> 
+      </Route>
+    </Routes>
+  </Router>
+);
 
 export default App;

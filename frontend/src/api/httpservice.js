@@ -9,6 +9,9 @@ class HttpService {
     //   timeout: 1000,
       headers: {
         'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',  // Disable caching
+        'Pragma': 'no-cache',  // Older HTTP/1.0 caching header
+        'Expires': '0',  // Ensure the cache is expired
       },
     });
   }
