@@ -13,8 +13,8 @@ const EventDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [ticketCreated, setTicketCreated] = useState(false); // State to track ticket creation
-  const [creationError, setCreationError] = useState(null); // State to track any creation errors
+  const [ticketCreated, setTicketCreated] = useState(false); 
+  const [creationError, setCreationError] = useState(null);
 
   useEffect(() => {
     const fetchEvent = async () => {

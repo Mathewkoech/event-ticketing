@@ -9,7 +9,7 @@
       }
     },
     {
-      "src": "backend/src/app.js",
+      "src": "backend/package.json",
       "use": "@vercel/node"
     }
   ],

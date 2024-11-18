@@ -5,7 +5,8 @@
       "start:prod": "NODE_ENV=production node backend/src/app.js",
       "build:frontend": "cd frontend && npm run build",
       "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
-      "build": "npm run build:frontend && npm run build:backend"
+      "build": "npm run build:frontend && npm run build:backend",
+      "postinstall": "cd frontend && npm install && cd ../backend && npm install"
     },
     "devDependencies": {
       "concurrently": "^8.2.2",
