@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "projects": [
+      {
+        "src": "frontend/",
+        "buildCommand": "npm run build",
+        "outputDirectory": "frontend/build"
+      },
+      {
+        "src": "backend/",
+        "use": "@vercel/node",
+        "routes": [
+          { "src": "/api/(.*)", "dest": "/api/$1" },
+          { "src": "/(.*)", "dest": "frontend/build/$1" }
+        ]
+      }
+    ]
+  }
+  
