@@ -5,6 +5,7 @@ import { ENDPOINTS } from '../../api/endpoint';
 import Loader from '../common/Loader';
 import { format } from 'date-fns';
 
+
 const Homepage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
