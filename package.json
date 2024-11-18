@@ -1,11 +1,19 @@
 {
     "scripts": {
-        "start:backend": "node backend/src/app.js",
-        "start:frontend": "cd frontend && npm run dev",
-        "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+      "start:backend": "node backend/src/app.js",  
+      "start:frontend": "cd frontend && npm run dev",
+      "start:prod": "NODE_ENV=production node backend/src/app.js",
+      "build:frontend": "cd frontend && npm run build",
+      "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+      "build": "npm run build:frontend && npm run build:backend"
     },
     "devDependencies": {
-        "concurrently": "^8.2.2",
-        "webpack-dev-server": "^5.1.0"
+      "concurrently": "^8.2.2",
+      "webpack-dev-server": "^5.1.0" 
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "react-scripts": "^4.0.3"
     }
-}
+  }
+  
